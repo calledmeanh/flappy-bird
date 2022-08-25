@@ -7,20 +7,9 @@ export function Bird() {
   let [velocity, setVel] = useState(VELOCITY);
 
   const jumping = () => {
-    setY((prev) => prev - BIRD_HEIGHT);
+    setY((prev) => prev - BIRD_HEIGHT / 1.5);
     setVel(VELOCITY);
   };
-
-  // listen for click event
-  /* useEffect(() => {
-    const onRemoveClick = listener('click', (e) => {
-      jumping();
-    });
-
-    return () => {
-      onRemoveClick();
-    };
-  }, []); */
 
   // listen for key down event
   useEffect(() => {
