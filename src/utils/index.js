@@ -8,12 +8,16 @@ export const randomNumInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const randomHeightPipe = (screenHeight) => {
-  // make sure the total height of two pipes is 60 <= h <= 80
-  const percent = randomNumInRange(30, 40);
-  const height = getPercent(screenHeight, percent);
+export const randomHeight2Pipe = (screenHeight) => {
+  // make sure the total height of two pipes is 75%
+  const maxPer = 75;
+  const upPer = randomNumInRange(20, maxPer);
+  const downPer = maxPer - upPer;
 
-  return height;
+  const upHeight = getPercent(screenHeight, upPer);
+  const downHeight = getPercent(screenHeight, downPer);
+
+  return { upHeight, downHeight };
 };
 
 export const listener = (type, handler, target = window) => {

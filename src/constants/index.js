@@ -1,4 +1,4 @@
-import { getPercent, randomHeightPipe } from '../utils';
+import { getPercent, randomHeight2Pipe } from '../utils';
 
 export const FPS = 1000 / 60;
 export const GRAVITY = 0.05;
@@ -23,8 +23,7 @@ export const PIPE_WIDTH = getPercent(SCREEN_WIDTH, 25);
 export const PIPE_WIDTH_HALF = PIPE_WIDTH / 2;
 export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
 
-export const PIPE_UP_HEIGHT = randomHeightPipe(SCREEN_HEIGHT);
-export const PIPE_DOWN_HEIGHT = randomHeightPipe(SCREEN_HEIGHT);
+export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = randomHeight2Pipe(SCREEN_HEIGHT);
 
 export const STYLES = {
   SCREEN: {
@@ -50,8 +49,7 @@ export const STYLES = {
     backgroundColor: '#35d59c',
     position: 'absolute',
     top: 0,
-    transform: `translateX(${PIPE_CENTER_X}px)`,
-    // transition: 'transform ease 0.05s',
+    transform: `translateX(${SCREEN_WIDTH}px)`,
   },
   PIPE_DOWN: {
     width: PIPE_WIDTH,
@@ -59,7 +57,6 @@ export const STYLES = {
     backgroundColor: '#35d59c',
     position: 'absolute',
     bottom: 0,
-    transform: `translateX(${PIPE_CENTER_X}px)`,
-    // transition: 'transform ease 0.05s',
+    transform: `translateX(${SCREEN_WIDTH}px)`,
   },
 };

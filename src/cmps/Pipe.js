@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {
-  PIPE_CENTER_X,
   VELOCITY,
   FPS,
   PIPE_WIDTH,
@@ -10,23 +9,23 @@ import {
   PIPE_DOWN_HEIGHT,
   SCREEN_HEIGHT,
 } from '../constants';
-import { randomHeightPipe } from '../utils';
+import { randomHeight2Pipe } from '../utils';
 
 export function Pipe() {
-  const [x, setX] = useState(PIPE_CENTER_X);
+  const [x, setX] = useState(SCREEN_WIDTH);
   const [heightUp, setHeightUp] = useState(PIPE_UP_HEIGHT);
   const [heightDown, setHeightDown] = useState(PIPE_DOWN_HEIGHT);
-
 
   // make pipe move to left
   useEffect(() => {
     const moveToLeftId = setInterval(() => {
       if (x > -PIPE_WIDTH) {
-        setX((prev) => prev - VELOCITY * 6);
+        setX((prev) => prev - VELOCITY * 3);
       } else {
         setX(SCREEN_WIDTH);
-        setHeightUp(randomHeightPipe(SCREEN_HEIGHT));
-        setHeightDown(randomHeightPipe(SCREEN_HEIGHT));
+        const { upHeight, downHeight } = randomHeight2Pipe(SCREEN_HEIGHT);
+        setHeightUp(upHeight);
+        setHeightDown(downHeight);
         clearInterval(moveToLeftId);
       }
     }, FPS);
