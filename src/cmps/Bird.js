@@ -6,22 +6,16 @@ export function Bird() {
   let [y, setY] = useState(BIRD_CENTER_Y);
   let [velocity, setVel] = useState(VELOCITY);
 
-  const jumping = () => {
-    setY((prev) => prev - BIRD_HEIGHT / 1.5);
-    setVel(VELOCITY);
-  };
-
   // listen for key down event
   useEffect(() => {
     const onRemoveKeydown = listener('keydown', (e) => {
       if (e.code === 'Space' && e.keyCode === 32) {
-        jumping();
+        setY((prev) => prev - BIRD_HEIGHT);
+        setVel(VELOCITY);
       }
     });
 
-    return () => {
-      onRemoveKeydown();
-    };
+    return () => onRemoveKeydown();
   }, []);
 
   // make bird fallin
@@ -31,14 +25,11 @@ export function Bird() {
         setVel((prev) => prev + GRAVITY * 2);
         setY((prev) => prev + velocity);
       } else {
-        setVel(0);
         setY(SCREEN_HEIGHT - BIRD_HEIGHT);
         clearInterval(birdFallinId);
       }
     }, FPS);
-    return () => {
-      clearInterval(birdFallinId);
-    };
+    return () => clearInterval(birdFallinId);
   });
 
   return <div style={{ ...STYLES.BIRD, transform: `translate(${BIRD_CENTER_X}px, ${y}px)` }}></div>;
