@@ -1,5 +1,5 @@
 import React from 'react';
-import { STYLES } from './constants';
+import { SCREEN_WIDTH, SCREEN_WIDTH_HALF, STYLES } from './constants';
 import { Bird } from './cmps/Bird';
 import { Pipe } from './cmps/Pipe';
 
@@ -7,7 +7,8 @@ function Screen() {
   return (
     <div style={{ ...STYLES.SCREEN }}>
       <Bird />
-      <Pipe />
+      <Pipe x={SCREEN_WIDTH} />
+      <Pipe x={SCREEN_WIDTH + SCREEN_WIDTH_HALF} />
     </div>
   );
 }
