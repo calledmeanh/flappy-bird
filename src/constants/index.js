@@ -27,7 +27,6 @@ export const BIRD_CENTER_Y = SCREEN_HEIGHT_HALF - BIRD_HEIGHT_HALF;
 export const PIPE_WIDTH = getPercent(SCREEN_WIDTH, PIPE_WIDTH_PERCENT);
 export const PIPE_WIDTH_HALF = PIPE_WIDTH / 2;
 export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
-
 export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = randomHeight2Pipe(
   SCREEN_HEIGHT,
   MAX_PIPE_HEIGHT_PERCENT
@@ -48,8 +47,6 @@ export const STYLES = {
     backgroundColor: 'red',
     position: 'absolute',
     zIndex: 1,
-    transform: `translate(${BIRD_CENTER_X}px, ${BIRD_CENTER_Y}px)`,
-    transition: 'transform ease 0.03s',
   },
   PIPE_UP: {
     width: PIPE_WIDTH,
