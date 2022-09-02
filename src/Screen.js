@@ -10,21 +10,28 @@ import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
   PIPE_WIDTH,
+  LINE_WIDTH,
 } from './constant';
-import { randomHeight2Pipe } from './util';
+import { randomHeightPipe } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case REDUCER_TYPE.BIRD_DOWN:
-      return { ...state, bird: { ...state.bird, y: action.payload } };
+      return { ...state, bird: { ...state.bird, y: state.bird.y + action.payload } };
     case REDUCER_TYPE.BIRD_STOP:
-      return { ...state, bird: { ...state.bird, y: action.payload } };
+      return { ...state, bird: { ...state.bird, y: action.payload - state.bird.h }, gameover: true, running: false };
     case REDUCER_TYPE.BIRD_JUMP:
-      return { ...state, bird: { ...state.bird, y: action.payload } };
+      return { ...state, bird: { ...state.bird, y: state.bird.y - state.bird.h } };
+    case REDUCER_TYPE.SCORE:
+      return { ...state, score: state.score + 1 };
+    case REDUCER_TYPE.RUN:
+      return { ...state, running: true };
+    case REDUCER_TYPE.PAUSE:
+      return { ...state, running: false };
     case REDUCER_TYPE.GAMEOVER:
-      return { ...state, gameover: true };
+      return { ...state, gameover: true, running: false };
     default:
       return state;
   }
@@ -34,8 +41,9 @@ const initialState = {
   running: false,
   gameover: false,
   score: 0,
-  bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.5 },
-  pipe: { w: PIPE_WIDTH, v: 1.5 },
+  line: { w: LINE_WIDTH },
+  bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
+  pipe: { w: PIPE_WIDTH, v: 1.4, initX: SCREEN_WIDTH },
 };
 
 function Screen() {
@@ -43,18 +51,19 @@ function Screen() {
 
   return (
     <div style={{ ...STYLES.SCREEN }}>
+      {state.score > 0 && <div style={{ ...STYLES.SCORE }}>{state.score}</div>}
       <Bird {...state} dispatch={dispatch} />
       <Pipe
         {...state}
-        initX={SCREEN_WIDTH}
-        height={randomHeight2Pipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
+        initX={state.pipe.initX}
+        height={randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
         dispatch={dispatch}
       />
 
       <Pipe
         {...state}
-        initX={SCREEN_WIDTH * 1.5}
-        height={randomHeight2Pipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
+        initX={state.pipe.initX * 1.5}
+        height={randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
         dispatch={dispatch}
       />
     </div>

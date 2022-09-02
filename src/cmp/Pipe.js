@@ -1,7 +1,8 @@
 import React, { Fragment, useRef } from 'react';
 import { STYLES, SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT, REDUCER_TYPE, SCREEN_WIDTH } from '../constant';
-import { randomHeight2Pipe, checkRectCollision } from '../util';
+import { randomHeightPipe, checkRectCollision } from '../util';
 import { useRaf } from '../hook';
+import { Line } from './Line';
 
 export function Pipe(props) {
   const x = useRef(props.initX);
@@ -9,12 +10,11 @@ export function Pipe(props) {
 
   // make pipe move to left
   useRaf(() => {
-    if (!props.gameover) {
+    if (props.running && !props.gameover) {
       if (x.current > -props.pipe.w) {
         x.current = x.current - props.pipe.v;
       } else {
-        const newHeight = randomHeight2Pipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT);
-        height.current = newHeight;
+        height.current = randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT);
         x.current = SCREEN_WIDTH;
       }
     }
@@ -22,7 +22,7 @@ export function Pipe(props) {
 
   // check collision of bird and pipe
   useRaf(() => {
-    if (!props.gameover) {
+    if (props.running && !props.gameover) {
       const { upHeight, downHeight } = height.current;
       const pipeUp = { x: x.current, y: 0, w: props.pipe.w, h: upHeight };
       const pipeDown = { x: x.current, y: SCREEN_HEIGHT - downHeight, w: props.pipe.w, h: downHeight };
@@ -38,6 +38,19 @@ export function Pipe(props) {
       <div
         style={{ ...STYLES.PIPE_UP, transform: `translateX(${x.current}px)`, height: height.current.upHeight }}
       ></div>
+      <Line
+        bird={props.bird}
+        line={{
+          x: x.current + props.pipe.w - props.line.w,
+          y: height.current.upHeight,
+          w: props.line.w,
+          h: height.current.midHeight,
+        }}
+        running={props.running}
+        gameover={props.gameover}
+        score={props.score}
+        dispatch={props.dispatch}
+      />
       <div
         style={{ ...STYLES.PIPE_DOWN, transform: `translateX(${x.current}px)`, height: height.current.downHeight }}
       ></div>

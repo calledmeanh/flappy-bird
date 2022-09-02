@@ -8,14 +8,14 @@ export const randomNumInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const randomHeight2Pipe = (screenHeight, maxPer) => {
+export const randomHeightPipe = (screenHeight, maxPer) => {
   const upPer = randomNumInRange(20, maxPer);
   const downPer = maxPer - upPer;
 
   const upHeight = getPercent(screenHeight, upPer);
   const downHeight = getPercent(screenHeight, downPer);
-
-  return { upHeight, downHeight };
+  const midHeight = getPercent(screenHeight, 100 - upPer + downPer);
+  return { upHeight, midHeight, downHeight };
 };
 
 export const listener = (type, handler, target = window) => {
