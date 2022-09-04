@@ -16,6 +16,8 @@ import { randomHeightPipe } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 
+import backgroundDay from './asset/background-day.png';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case REDUCER_TYPE.BIRD_DOWN:
@@ -50,7 +52,7 @@ function Screen() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div style={{ ...STYLES.SCREEN }}>
+    <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundDay})` }}>
       {state.score > 0 && <div style={{ ...STYLES.SCORE }}>{state.score}</div>}
       <Bird {...state} dispatch={dispatch} />
       <Pipe

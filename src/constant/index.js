@@ -1,7 +1,7 @@
 import { getPercent, randomHeightPipe } from '../util';
 
 export const SCREEN_WIDTH = 400;
-export const SCREEN_HEIGHT = 600;
+export const SCREEN_HEIGHT = 800;
 
 export const BIRD_PERCENT = 8;
 export const PIPE_WIDTH_PERCENT = 20;
@@ -49,6 +49,8 @@ export const STYLES = {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
     backgroundColor: '#f9dcbc',
+    backgroundRepeat: 'repeat-x',
+    backgroundSize: '100% 100%',
     margin: '0 auto',
     position: 'relative',
     overflow: 'hidden',
@@ -56,19 +58,23 @@ export const STYLES = {
   BIRD: {
     width: BIRD_WIDTH,
     height: BIRD_HEIGHT,
-    backgroundColor: 'red',
+    objectFit: 'scale-down',
     position: 'absolute',
     zIndex: 1,
   },
   PIPE_UP: {
     width: PIPE_WIDTH,
-    backgroundColor: '#35d59c',
+    // backgroundColor: '#35d59c',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
     position: 'absolute',
     top: 0,
   },
   PIPE_DOWN: {
     width: PIPE_WIDTH,
-    backgroundColor: '#35d59c',
+    // backgroundColor: '#35d59c',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
     position: 'absolute',
     bottom: 0,
   },

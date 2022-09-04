@@ -4,6 +4,9 @@ import { randomHeightPipe, checkRectCollision } from '../util';
 import { useRaf } from '../hook';
 import { Line } from './Line';
 
+import pipeDown from '../asset/pipe-green-down.png';
+import pipeUp from '../asset/pipe-green-up.png';
+
 export function Pipe(props) {
   const x = useRef(props.initX);
   const height = useRef(props.height);
@@ -36,7 +39,12 @@ export function Pipe(props) {
   return (
     <Fragment>
       <div
-        style={{ ...STYLES.PIPE_UP, transform: `translateX(${x.current}px)`, height: height.current.upHeight }}
+        style={{
+          ...STYLES.PIPE_UP,
+          backgroundImage: `url(${pipeUp})`,
+          transform: `translateX(${x.current}px)`,
+          height: height.current.upHeight,
+        }}
       ></div>
       <Line
         bird={props.bird}
@@ -52,7 +60,12 @@ export function Pipe(props) {
         dispatch={props.dispatch}
       />
       <div
-        style={{ ...STYLES.PIPE_DOWN, transform: `translateX(${x.current}px)`, height: height.current.downHeight }}
+        style={{
+          ...STYLES.PIPE_DOWN,
+          backgroundImage: `url(${pipeDown})`,
+          transform: `translateX(${x.current}px)`,
+          height: height.current.downHeight,
+        }}
       ></div>
     </Fragment>
   );

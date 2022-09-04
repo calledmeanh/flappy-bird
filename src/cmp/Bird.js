@@ -3,6 +3,8 @@ import { GRAVITY, REDUCER_TYPE, SCREEN_HEIGHT, STYLES } from '../constant';
 import { useRaf } from '../hook';
 import { listener } from '../util';
 
+import birdDown from '../asset/yellowbird-downflap.png';
+
 export function Bird(props) {
   const velocity = useRef(props.bird.v);
   const onRemoveKeydown = useRef();
@@ -46,9 +48,13 @@ export function Bird(props) {
   }, [props]);
 
   return (
-    <div
-      className="bỉrd"
-      style={{ ...STYLES.BIRD, transform: `translate(${props.bird.x}px, ${props.bird.y}px)` }}
-    ></div>
+    <img
+      src={birdDown}
+      alt="bird"
+      style={{
+        ...STYLES.BIRD,
+        transform: `translate(${props.bird.x}px, ${props.bird.y}px)`,
+      }}
+    />
   );
 }
