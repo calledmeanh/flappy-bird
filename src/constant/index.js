@@ -1,4 +1,4 @@
-import { getPercent, randomHeightPipe } from '../util';
+import { getSizeByPercent, randomHeightPipe } from '../util';
 
 export const SCREEN_WIDTH = 400;
 export const SCREEN_HEIGHT = 800;
@@ -14,8 +14,8 @@ export const GRAVITY = 0.05;
 export const SCREEN_WIDTH_HALF = SCREEN_WIDTH / 2;
 export const SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2;
 
-export const BIRD_WIDTH = getPercent((SCREEN_WIDTH + SCREEN_HEIGHT) / 2, BIRD_PERCENT);
-export const BIRD_HEIGHT = getPercent((SCREEN_WIDTH + SCREEN_HEIGHT) / 2, BIRD_PERCENT);
+export const BIRD_WIDTH = getSizeByPercent((SCREEN_WIDTH + SCREEN_HEIGHT) / 2, BIRD_PERCENT);
+export const BIRD_HEIGHT = getSizeByPercent((SCREEN_WIDTH + SCREEN_HEIGHT) / 2, BIRD_PERCENT);
 
 export const BIRD_WIDTH_HALF = BIRD_WIDTH / 2;
 export const BIRD_HEIGHT_HALF = BIRD_HEIGHT / 2;
@@ -25,7 +25,7 @@ export const BIRD_CENTER_Y = SCREEN_HEIGHT_HALF - BIRD_HEIGHT_HALF;
 
 export const GROUND_HEIGHT = 15;
 
-export const PIPE_WIDTH = getPercent(SCREEN_WIDTH, PIPE_WIDTH_PERCENT);
+export const PIPE_WIDTH = getSizeByPercent(SCREEN_WIDTH, PIPE_WIDTH_PERCENT);
 export const PIPE_WIDTH_HALF = PIPE_WIDTH / 2;
 export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = randomHeightPipe(
   SCREEN_HEIGHT,
@@ -33,7 +33,7 @@ export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = random
 );
 export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
 
-export const LINE_WIDTH = getPercent(SCREEN_WIDTH, LINE_PERCENT);
+export const LINE_WIDTH = getSizeByPercent(SCREEN_WIDTH, LINE_PERCENT);
 export const LINE_WIDTH_HALF = LINE_WIDTH / 2;
 
 export const REDUCER_TYPE = {
@@ -50,7 +50,6 @@ export const STYLES = {
   SCREEN: {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    backgroundColor: '#f9dcbc',
     backgroundRepeat: 'repeat-x',
     backgroundSize: '100% 100%',
     margin: '0 auto',
@@ -66,7 +65,6 @@ export const STYLES = {
   },
   PIPE_UP: {
     width: PIPE_WIDTH,
-    // backgroundColor: '#35d59c',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
     position: 'absolute',
@@ -74,7 +72,6 @@ export const STYLES = {
   },
   PIPE_DOWN: {
     width: PIPE_WIDTH,
-    // backgroundColor: '#35d59c',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
     position: 'absolute',
@@ -92,6 +89,7 @@ export const STYLES = {
   SCORE: {
     fontSize: 60,
     userSelect: 'none',
+    color: '#543444',
     position: 'absolute',
     transform: `translate(${BIRD_CENTER_X}px, ${50}px)`,
     zIndex: 1,

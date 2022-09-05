@@ -14,9 +14,8 @@ export function Pipe(props) {
   // make pipe move to left
   useRaf(() => {
     if (props.running && !props.gameover) {
-      if (x.current > -props.pipe.w) {
-        x.current = x.current - props.pipe.v;
-      } else {
+      if (x.current > -props.pipe.w) x.current = x.current - props.pipe.v;
+      else {
         height.current = randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT);
         x.current = SCREEN_WIDTH;
       }

@@ -1,6 +1,4 @@
-export const getPercent = (size, percent) => {
-  return (percent * size) / 100;
-};
+export const getSizeByPercent = (size, percent) => (percent * size) / 100;
 
 export const randomNumInRange = (min, max) => {
   min = Math.ceil(min);
@@ -12,9 +10,9 @@ export const randomHeightPipe = (screenHeight, maxPer) => {
   const upPer = randomNumInRange(20, maxPer);
   const downPer = maxPer - upPer;
 
-  const upHeight = getPercent(screenHeight, upPer);
-  const downHeight = getPercent(screenHeight, downPer);
-  const midHeight = getPercent(screenHeight, 100 - upPer + downPer);
+  const upHeight = getSizeByPercent(screenHeight, upPer);
+  const downHeight = getSizeByPercent(screenHeight, downPer);
+  const midHeight = getSizeByPercent(screenHeight, 100 - (upPer + downPer));
   return { upHeight, midHeight, downHeight };
 };
 

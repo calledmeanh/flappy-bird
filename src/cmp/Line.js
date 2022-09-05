@@ -9,9 +9,8 @@ export function Line(props) {
 
   useRaf(() => {
     if (props.running && !props.gameover) {
-      if (checkRectCollision(props.bird, props.line)) {
-        crossLine.current = true;
-      } else {
+      if (checkRectCollision(props.bird, props.line)) crossLine.current = true;
+      else {
         if (crossLine.current) {
           props.dispatch({ type: REDUCER_TYPE.SCORE });
           crossLine.current = false;
@@ -19,6 +18,7 @@ export function Line(props) {
       }
     }
   });
+
   return (
     <div
       style={{
