@@ -60,9 +60,9 @@ export const STYLES = {
   BIRD: {
     width: BIRD_WIDTH,
     height: BIRD_HEIGHT,
-    // objectFit: 'scale-down',
     position: 'absolute',
     zIndex: 1,
+    transition: 'transform 0.1s ease',
   },
   PIPE_UP: {
     width: PIPE_WIDTH,
