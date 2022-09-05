@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { GRAVITY, REDUCER_TYPE, SCREEN_HEIGHT, STYLES } from '../constant';
 import { useRaf } from '../hook';
 import { listener } from '../util';
@@ -7,7 +7,6 @@ import birdDown from '../asset/yellowbird-downflap.png';
 
 export function Bird(props) {
   const velocity = useRef(props.bird.v);
-  const onRemoveKeydown = useRef();
 
   // make bird fallin down
   useRaf(() => {
@@ -21,19 +20,23 @@ export function Bird(props) {
     }
   });
 
+  const jumping = useCallback(() => {
+    if (!props.gameover) {
+      if (!props.running) {
+        props.dispatch({ type: REDUCER_TYPE.RUN });
+      } else {
+        velocity.current = props.bird.v;
+        props.dispatch({ type: REDUCER_TYPE.BIRD_JUMP });
+      }
+    }
+  }, [props]);
+
   // make bird jump when press space
   useEffect(() => {
-    onRemoveKeydown.current = listener('keydown', (e) => {
+    const onRemoveKeydown = listener('keydown', (e) => {
       switch (e.keyCode) {
         case 32: // space
-          if (!props.gameover) {
-            if (!props.running) {
-              props.dispatch({ type: REDUCER_TYPE.RUN });
-            } else {
-              velocity.current = props.bird.v;
-              props.dispatch({ type: REDUCER_TYPE.BIRD_JUMP });
-            }
-          }
+          jumping();
           break;
         case 80: // p
           if (!props.gameover) {
@@ -44,8 +47,16 @@ export function Bird(props) {
           break;
       }
     });
-    return () => onRemoveKeydown.current();
-  }, [props]);
+    return () => onRemoveKeydown();
+  }, [props, jumping]);
+
+  // make bird jump when touch
+  useEffect(() => {
+    const onRemoveTouch = listener('touchstart', (e) => {
+      jumping();
+    });
+    return () => onRemoveTouch();
+  }, [jumping]);
 
   return (
     <img
