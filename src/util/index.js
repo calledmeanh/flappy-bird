@@ -16,6 +16,12 @@ export const randomHeightPipe = (screenHeight, maxPer) => {
   return { upHeight, midHeight, downHeight };
 };
 
+export const getStateOfTime = () => {
+  const hours = new Date().getHours();
+  if (hours >= 6 && hours < 20) return true; // day
+  return false; // night
+};
+
 export const listener = (type, handler, target = window) => {
   target.addEventListener(type, handler, { passive: false });
   return () => {

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useRef } from 'react';
 import {
   BIRD_CENTER_Y,
   BIRD_HEIGHT,
@@ -13,11 +13,12 @@ import {
   LINE_WIDTH,
   GROUND_HEIGHT,
 } from './constant';
-import { randomHeightPipe } from './util';
+import { getStateOfTime, randomHeightPipe } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 
 import backgroundDay from './asset/background-day.png';
+import backgroundNight from './asset/background-night.png';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -52,9 +53,10 @@ const initialState = {
 
 function Screen() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const backgroundByTime = useRef(getStateOfTime() ? backgroundDay : backgroundNight);
 
   return (
-    <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundDay})` }}>
+    <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundByTime.current})` }}>
       {state.score > 0 && <div style={{ ...STYLES.SCORE }}>{state.score}</div>}
       <Bird {...state} dispatch={dispatch} />
       <Pipe
