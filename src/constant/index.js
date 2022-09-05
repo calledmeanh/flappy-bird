@@ -3,7 +3,7 @@ import { getPercent, randomHeightPipe } from '../util';
 export const SCREEN_WIDTH = 400;
 export const SCREEN_HEIGHT = 800;
 
-export const BIRD_PERCENT = 8;
+export const BIRD_PERCENT = 6;
 export const PIPE_WIDTH_PERCENT = 20;
 // make sure the total height of two pipes is 75%
 export const MAX_PIPE_HEIGHT_PERCENT = 75;
@@ -23,11 +23,13 @@ export const BIRD_HEIGHT_HALF = BIRD_HEIGHT / 2;
 export const BIRD_CENTER_X = SCREEN_WIDTH_HALF - BIRD_WIDTH_HALF;
 export const BIRD_CENTER_Y = SCREEN_HEIGHT_HALF - BIRD_HEIGHT_HALF;
 
+export const GROUND_HEIGHT = 15;
+
 export const PIPE_WIDTH = getPercent(SCREEN_WIDTH, PIPE_WIDTH_PERCENT);
 export const PIPE_WIDTH_HALF = PIPE_WIDTH / 2;
 export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = randomHeightPipe(
   SCREEN_HEIGHT,
-  MAX_PIPE_HEIGHT_PERCENT
+  MAX_PIPE_HEIGHT_PERCENT - GROUND_HEIGHT
 );
 export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
 
@@ -58,7 +60,7 @@ export const STYLES = {
   BIRD: {
     width: BIRD_WIDTH,
     height: BIRD_HEIGHT,
-    objectFit: 'scale-down',
+    // objectFit: 'scale-down',
     position: 'absolute',
     zIndex: 1,
   },
@@ -75,6 +77,15 @@ export const STYLES = {
     // backgroundColor: '#35d59c',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
+    position: 'absolute',
+    bottom: GROUND_HEIGHT,
+  },
+  GROUND: {
+    width: '100%',
+    height: GROUND_HEIGHT,
+    borderTop: '2px solid #543444',
+    boxSizing: 'border-box',
+    backgroundImage: 'repeating-linear-gradient(-45deg, #a3de5a 0 5px, #69a817 5px 10px)',
     position: 'absolute',
     bottom: 0,
   },

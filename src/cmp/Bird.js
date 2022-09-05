@@ -12,11 +12,11 @@ export function Bird(props) {
   // make bird fallin down
   useRaf(() => {
     if (props.running || props.gameover) {
-      if (props.bird.y < SCREEN_HEIGHT - props.bird.h) {
+      if (props.bird.y < SCREEN_HEIGHT - props.ground.h - props.bird.h) {
         velocity.current = velocity.current + GRAVITY * 2;
         props.dispatch({ type: REDUCER_TYPE.BIRD_DOWN, payload: velocity.current });
       } else {
-        props.dispatch({ type: REDUCER_TYPE.BIRD_STOP, payload: SCREEN_HEIGHT });
+        props.dispatch({ type: REDUCER_TYPE.BIRD_STOP, payload: SCREEN_HEIGHT - props.ground.h });
       }
     }
   });

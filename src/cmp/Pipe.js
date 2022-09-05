@@ -28,7 +28,7 @@ export function Pipe(props) {
     if (props.running && !props.gameover) {
       const { upHeight, downHeight } = height.current;
       const pipeUp = { x: x.current, y: 0, w: props.pipe.w, h: upHeight };
-      const pipeDown = { x: x.current, y: SCREEN_HEIGHT - downHeight, w: props.pipe.w, h: downHeight };
+      const pipeDown = { x: x.current, y: SCREEN_HEIGHT - props.ground.h - downHeight, w: props.pipe.w, h: downHeight };
 
       if (checkRectCollision(props.bird, pipeUp) || checkRectCollision(props.bird, pipeDown)) {
         props.dispatch({ type: REDUCER_TYPE.GAMEOVER });

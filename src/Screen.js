@@ -11,6 +11,7 @@ import {
   SCREEN_WIDTH,
   PIPE_WIDTH,
   LINE_WIDTH,
+  GROUND_HEIGHT,
 } from './constant';
 import { randomHeightPipe } from './util';
 import { Bird } from './cmp/Bird';
@@ -46,6 +47,7 @@ const initialState = {
   line: { w: LINE_WIDTH },
   bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
   pipe: { w: PIPE_WIDTH, v: 1.4, initX: SCREEN_WIDTH },
+  ground: { h: GROUND_HEIGHT },
 };
 
 function Screen() {
@@ -68,6 +70,7 @@ function Screen() {
         height={randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
         dispatch={dispatch}
       />
+      <div className={state.gameover ? '' : 'ground'} style={{ ...STYLES.GROUND }}></div>
     </div>
   );
 }
