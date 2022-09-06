@@ -45,7 +45,7 @@ export function Bird(props) {
       if (!props.running) props.dispatch({ type: REDUCER_TYPE.RUN });
       else {
         velocity.current = props.bird.v;
-        rotate.current = -135;
+        rotate.current = -90;
         props.dispatch({ type: REDUCER_TYPE.BIRD_JUMP });
       }
     }
