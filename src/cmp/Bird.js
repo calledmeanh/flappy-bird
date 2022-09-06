@@ -1,30 +1,30 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GRAVITY, REDUCER_TYPE, SCREEN_HEIGHT, STYLES } from '../constant';
 import { useRaf } from '../hook';
 import { listener } from '../util';
 
 import birdDown from '../asset/yellowbird-downflap.png';
-// import birdMid from '../asset/yellowbird-midflap.png';
-// import birdUp from '../asset/yellowbird-upflap.png';
+import birdMid from '../asset/yellowbird-midflap.png';
+import birdUp from '../asset/yellowbird-upflap.png';
 
-// const birdSprites = [birdDown, birdMid, birdUp];
-// let birdIdx = 0;
+const birdSprites = [birdDown, birdMid, birdUp];
+let birdIdx = 0;
 
 export function Bird(props) {
-  // const [src, setSrc] = useState(birdDown);
+  const [src, setSrc] = useState(birdDown);
   const velocity = useRef(props.bird.v);
   const tolerace = useRef(2);
   const rotate = useRef(0);
 
   // sprite animation
-  // useRaf(() => {
-  //   if (!props.gameover) {
-  //     if (birdIdx < birdSprites.length - 1) {
-  //       setSrc(birdSprites[birdIdx]);
-  //       birdIdx++;
-  //     } else birdIdx = 0;
-  //   }
-  // });
+  useRaf(() => {
+    if (!props.gameover) {
+      if (birdIdx < birdSprites.length - 1) {
+        setSrc(birdSprites[birdIdx]);
+        birdIdx++;
+      } else birdIdx = 0;
+    }
+  });
 
   // make bird fallin down
   useRaf(() => {
@@ -78,7 +78,7 @@ export function Bird(props) {
 
   return (
     <img
-      src={birdDown}
+      src={src}
       alt="bird"
       style={{
         ...STYLES.BIRD,

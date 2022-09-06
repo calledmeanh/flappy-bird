@@ -67,7 +67,6 @@ export const STYLES = {
     height: BIRD_HEIGHT,
     position: 'absolute',
     zIndex: 1,
-    transition: 'transform 0.1s ease',
   },
   PIPE_UP: {
     width: PIPE_WIDTH,
