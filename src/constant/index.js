@@ -1,7 +1,13 @@
 import { getSizeByPercent, randomHeightPipe } from '../util';
 
-export const SCREEN_WIDTH = 400;
-export const SCREEN_HEIGHT = 800;
+const SMALLEST_DEVICE_WIDTH = 320;
+
+/* 
+  plus 70 to make min width equal to 320
+  ex: if your vp is less than or equal to 500 (500 / 2 = 250 + 70 = 320)
+ */
+export const SCREEN_WIDTH = window.innerWidth <= 500 ? SMALLEST_DEVICE_WIDTH : 500;
+export const SCREEN_HEIGHT = Math.floor(getSizeByPercent(window.innerHeight, 85));
 
 export const BIRD_PERCENT = 6;
 export const PIPE_WIDTH_PERCENT = 20;

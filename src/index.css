@@ -12,7 +12,7 @@ code {
 }
 
 .ground {
-  animation: animatedBackground 1.4s linear infinite;
+  animation: animatedBackground 0.4s linear infinite;
 }
 
 @keyframes animatedBackground {

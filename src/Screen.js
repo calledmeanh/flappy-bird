@@ -27,7 +27,7 @@ const reducer = (state, action) => {
     case REDUCER_TYPE.BIRD_STOP:
       return { ...state, bird: { ...state.bird, y: action.payload - state.bird.h }, gameover: true, running: false };
     case REDUCER_TYPE.BIRD_JUMP:
-      return { ...state, bird: { ...state.bird, y: state.bird.y - state.bird.h } };
+      return { ...state, bird: { ...state.bird, y: state.bird.y - state.bird.h * 1.5 } };
     case REDUCER_TYPE.SCORE:
       return { ...state, score: state.score + 1 };
     case REDUCER_TYPE.RUN:
@@ -47,7 +47,7 @@ const initialState = {
   score: 0,
   line: { w: LINE_WIDTH },
   bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
-  pipe: { w: PIPE_WIDTH, v: 1.4, initX: SCREEN_WIDTH },
+  pipe: { w: PIPE_WIDTH, v: 2.4, initX: SCREEN_WIDTH },
   ground: { h: GROUND_HEIGHT },
 };
 
