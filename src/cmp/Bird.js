@@ -3,9 +3,11 @@ import { GRAVITY, REDUCER_TYPE, SCREEN_HEIGHT, STYLES } from '../constant';
 import { useRaf } from '../hook';
 import { listener } from '../util';
 
-import birdDown from '../asset/yellowbird-downflap.png';
-import birdMid from '../asset/yellowbird-midflap.png';
-import birdUp from '../asset/yellowbird-upflap.png';
+import birdDown from '../asset/sprites/yellowbird-downflap.png';
+import birdMid from '../asset/sprites/yellowbird-midflap.png';
+import birdUp from '../asset/sprites/yellowbird-upflap.png';
+
+import wingSrc from '../asset/audio/audio_wing.ogg';
 
 const birdSprites = [birdDown, birdMid, birdUp];
 let birdIdx = 0;
@@ -15,6 +17,7 @@ export function Bird(props) {
   const velocity = useRef(props.bird.v);
   const tolerace = useRef(2);
   const rotate = useRef(0);
+  const wingRef = useRef();
 
   // sprite animation
   useRaf(() => {
@@ -44,6 +47,11 @@ export function Bird(props) {
     if (!props.gameover) {
       if (!props.running) props.dispatch({ type: REDUCER_TYPE.RUN });
       else {
+        if (wingRef.current) {
+          wingRef.current.currentTime = 0;
+          wingRef.current.play();
+        }
+
         velocity.current = props.bird.v;
         rotate.current = -90;
         props.dispatch({ type: REDUCER_TYPE.BIRD_JUMP });
@@ -77,13 +85,16 @@ export function Bird(props) {
   }, [jumping]);
 
   return (
-    <img
-      src={src}
-      alt="bird"
-      style={{
-        ...STYLES.BIRD,
-        transform: `translate(${props.bird.x}px, ${props.bird.y}px) rotate(${rotate.current}deg)`,
-      }}
-    />
+    <>
+      <img
+        src={src}
+        alt="bird"
+        style={{
+          ...STYLES.BIRD,
+          transform: `translate(${props.bird.x}px, ${props.bird.y}px) rotate(${rotate.current}deg)`,
+        }}
+      />
+      <audio ref={wingRef} src={wingSrc}></audio>
+    </>
   );
 }

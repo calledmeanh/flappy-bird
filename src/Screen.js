@@ -17,8 +17,8 @@ import { getStateOfTime, randomHeightPipe } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 
-import backgroundDay from './asset/background-day.png';
-import backgroundNight from './asset/background-night.png';
+import backgroundDay from './asset/sprites/background-day.png';
+import backgroundNight from './asset/sprites/background-night.png';
 
 const reducer = (state, action) => {
   switch (action.type) {

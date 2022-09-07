@@ -1,15 +1,18 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useEffect, useRef } from 'react';
 import { STYLES, SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT, REDUCER_TYPE, SCREEN_WIDTH } from '../constant';
 import { randomHeightPipe, checkRectCollision } from '../util';
 import { useRaf } from '../hook';
 import { Line } from './Line';
 
-import pipeDown from '../asset/pipe-green-down.png';
-import pipeUp from '../asset/pipe-green-up.png';
+import pipeDown from '../asset/sprites/pipe-green-down.png';
+import pipeUp from '../asset/sprites/pipe-green-up.png';
+
+import hitSrc from '../asset/audio/audio_hit.ogg';
 
 export function Pipe(props) {
   const x = useRef(props.initX);
   const height = useRef(props.height);
+  const hitRef = useRef();
 
   // make pipe move to left
   useRaf(() => {
@@ -23,6 +26,10 @@ export function Pipe(props) {
     }
   });
 
+  useEffect(() => {
+    console.log(hitRef);
+  }, []);
+
   // check collision of bird and pipe
   useRaf(() => {
     if (props.running && !props.gameover) {
@@ -31,6 +38,11 @@ export function Pipe(props) {
       const pipeDown = { x: x.current, y: SCREEN_HEIGHT - props.ground.h - downHeight, w: props.pipe.w, h: downHeight };
 
       if (checkRectCollision(props.bird, pipeUp) || checkRectCollision(props.bird, pipeDown)) {
+        if (hitRef.current) {
+          hitRef.current.currentTime = 0;
+          hitRef.current.play();
+        }
+
         props.dispatch({ type: REDUCER_TYPE.GAMEOVER });
       }
     }
@@ -67,6 +79,7 @@ export function Pipe(props) {
           height: height.current.downHeight,
         }}
       ></div>
+      <audio ref={hitRef} src={hitSrc}></audio>
     </Fragment>
   );
 }
