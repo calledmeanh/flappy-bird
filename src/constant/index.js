@@ -7,12 +7,13 @@ const SMALLEST_DEVICE_WIDTH = 320;
   ex: if your vp is less than or equal to 500 (500 / 2 = 250 + 70 = 320)
  */
 export const SCREEN_WIDTH = window.innerWidth <= 500 ? SMALLEST_DEVICE_WIDTH : 500;
-export const SCREEN_HEIGHT = Math.floor(getSizeByPercent(window.innerHeight, 85));
+export const SCREEN_HEIGHT = Math.floor(getSizeByPercent(window.innerHeight, 90));
 
 export const BIRD_PERCENT = 6;
 export const PIPE_WIDTH_PERCENT = 20;
+export const GROUND_PERCENT = 7;
 // make sure the total height of two pipes is 75%
-export const MAX_PIPE_HEIGHT_PERCENT = 75;
+export const MAX_PIPE_HEIGHT_PERCENT = 75 - GROUND_PERCENT;
 export const LINE_PERCENT = 0.5;
 
 export const GRAVITY = 0.05;
@@ -29,13 +30,15 @@ export const BIRD_HEIGHT_HALF = BIRD_HEIGHT / 2;
 export const BIRD_CENTER_X = SCREEN_WIDTH_HALF - BIRD_WIDTH_HALF;
 export const BIRD_CENTER_Y = SCREEN_HEIGHT_HALF - BIRD_HEIGHT_HALF;
 
-export const GROUND_HEIGHT = 15;
+export const GROUND_HEIGHT = getSizeByPercent(SCREEN_HEIGHT, GROUND_PERCENT);
+export const CROSSLINE_HEIGHT = getSizeByPercent(SCREEN_HEIGHT, GROUND_PERCENT - 5);
+export const LANE_HEIGHT = getSizeByPercent(SCREEN_HEIGHT, GROUND_PERCENT - 2);
 
 export const PIPE_WIDTH = getSizeByPercent(SCREEN_WIDTH, PIPE_WIDTH_PERCENT);
 export const PIPE_WIDTH_HALF = PIPE_WIDTH / 2;
 export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = randomHeightPipe(
   SCREEN_HEIGHT,
-  MAX_PIPE_HEIGHT_PERCENT - GROUND_HEIGHT
+  MAX_PIPE_HEIGHT_PERCENT
 );
 export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
 
@@ -86,11 +89,21 @@ export const STYLES = {
   GROUND: {
     width: '100%',
     height: GROUND_HEIGHT,
-    borderTop: '2px solid #543444',
-    boxSizing: 'border-box',
-    backgroundImage: 'repeating-linear-gradient(-45deg, #a3de5a 0 5px, #69a817 5px 10px)',
     position: 'absolute',
     bottom: 0,
+  },
+  CROSSLINE: {
+    width: '100%',
+    height: CROSSLINE_HEIGHT,
+    backgroundImage: 'repeating-linear-gradient(-45deg, #a3de5a 0 5px, #69a817 5px 10px)',
+    borderTop: '2px solid #543444',
+    borderBottom: '2px solid #5e7e13',
+    boxSizing: 'border-box',
+  },
+  LANE: {
+    width: '100%',
+    height: LANE_HEIGHT,
+    backgroundColor: '#ddd894',
   },
   SCORE: {
     fontSize: 60,

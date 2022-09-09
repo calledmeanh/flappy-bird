@@ -16,6 +16,7 @@ import {
 import { getStateOfTime, randomHeightPipe } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
+import { Ground } from './cmp/Ground';
 
 import backgroundDay from './asset/sprites/background-day.png';
 import backgroundNight from './asset/sprites/background-night.png';
@@ -72,7 +73,7 @@ function Screen() {
         height={randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
         dispatch={dispatch}
       />
-      <div className={state.gameover ? '' : 'ground'} style={{ ...STYLES.GROUND }}></div>
+      <Ground gameover={state.gameover} />
     </div>
   );
 }
