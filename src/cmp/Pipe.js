@@ -61,7 +61,7 @@ export function Pipe(props) {
       <Line
         bird={props.bird}
         line={{
-          x: x.current + props.pipe.w - props.line.w,
+          x: x.current + props.pipe.w / 2 - props.line.w,
           y: height.current.upHeight,
           w: props.line.w,
           h: height.current.midHeight,
