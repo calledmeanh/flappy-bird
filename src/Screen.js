@@ -48,7 +48,7 @@ const initialState = {
   score: 0,
   line: { w: LINE_WIDTH },
   bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
-  pipe: { w: PIPE_WIDTH, v: 2.4, initX: SCREEN_WIDTH },
+  pipe: { w: PIPE_WIDTH, v: 2, initX: SCREEN_WIDTH },
   ground: { h: GROUND_HEIGHT },
 };
 
@@ -58,7 +58,7 @@ function Screen() {
 
   return (
     <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundByTime.current})` }}>
-      {state.score > 0 && <div style={{ ...STYLES.SCORE }}>{state.score}</div>}
+      {state.score > 0 && !state.gameover && <div style={{ ...STYLES.SCORE }}>{state.score}</div>}
       <Bird {...state} dispatch={dispatch} />
       <Pipe
         {...state}
@@ -74,6 +74,14 @@ function Screen() {
         dispatch={dispatch}
       />
       <Ground gameover={state.gameover} />
+      {Boolean(state.gameover) && (
+        <div style={{ ...STYLES.RESTART }}>
+          <p style={{ ...STYLES.RESTART_SCORE }}>Score: {state.score > 0 ? state.score : 0}</p>
+          <button style={{ ...STYLES.RESTART_BTN }} onClick={() => window.location.reload()}>
+            Restart
+          </button>
+        </div>
+      )}
     </div>
   );
 }
