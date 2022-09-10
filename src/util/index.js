@@ -1,3 +1,14 @@
+import zeroImg from '../asset/sprites/0.png';
+import oneImg from '../asset/sprites/1.png';
+import twoImg from '../asset/sprites/2.png';
+import threeImg from '../asset/sprites/3.png';
+import fourImg from '../asset/sprites/4.png';
+import fiveImg from '../asset/sprites/5.png';
+import sixImg from '../asset/sprites/6.png';
+import sevenImg from '../asset/sprites/7.png';
+import eightImg from '../asset/sprites/8.png';
+import nineImg from '../asset/sprites/9.png';
+
 export const getSizeByPercent = (size, percent) => (percent * size) / 100;
 
 export const randomNumInRange = (min, max) => {
@@ -40,4 +51,48 @@ export const checkRectCollision = (rect1, rect2) => {
   } else {
     return false;
   }
+};
+
+export const getImageByNumber = (num) => {
+  switch (num) {
+    case 0:
+      return zeroImg;
+    case 1:
+      return oneImg;
+    case 2:
+      return twoImg;
+    case 3:
+      return threeImg;
+    case 4:
+      return fourImg;
+    case 5:
+      return fiveImg;
+    case 6:
+      return sixImg;
+    case 7:
+      return sevenImg;
+    case 8:
+      return eightImg;
+    case 9:
+      return nineImg;
+    default:
+      return '';
+  }
+};
+
+export const transformScore = (score) => {
+  if (score < 10) {
+    const scoreImg = getImageByNumber(score);
+    return [scoreImg];
+  }
+
+  const scoreStr = score.toString();
+  const scoreArr = scoreStr.split('');
+
+  return scoreArr.reduce((init, s) => {
+    const scoreInt = parseInt(s);
+    const scoreImg = getImageByNumber(scoreInt);
+    init.push(scoreImg);
+    return init;
+  }, []);
 };

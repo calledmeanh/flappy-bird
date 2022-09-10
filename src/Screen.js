@@ -13,13 +13,14 @@ import {
   LINE_WIDTH,
   GROUND_HEIGHT,
 } from './constant';
-import { getStateOfTime, randomHeightPipe } from './util';
+import { getStateOfTime, randomHeightPipe, transformScore } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 import { Ground } from './cmp/Ground';
 
 import backgroundDay from './asset/sprites/background-day.png';
 import backgroundNight from './asset/sprites/background-night.png';
+import { Restart } from './cmp/Restart';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -58,7 +59,13 @@ function Screen() {
 
   return (
     <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundByTime.current})` }}>
-      {state.score > 0 && !state.gameover && <div style={{ ...STYLES.SCORE }}>{state.score}</div>}
+      {state.score > 0 && !state.gameover && (
+        <div style={{ ...STYLES.SCORE }}>
+          {transformScore(state.score).map((s, i) => {
+            return <img key={i} style={{ ...STYLES.SCORE_IMG }} src={s} alt={i} />;
+          })}
+        </div>
+      )}
       <Bird {...state} dispatch={dispatch} />
       <Pipe
         {...state}
@@ -74,14 +81,7 @@ function Screen() {
         dispatch={dispatch}
       />
       <Ground gameover={state.gameover} />
-      {Boolean(state.gameover) && (
-        <div style={{ ...STYLES.RESTART }}>
-          <p style={{ ...STYLES.RESTART_SCORE }}>Score: {state.score > 0 ? state.score : 0}</p>
-          <button style={{ ...STYLES.RESTART_BTN }} onClick={() => window.location.reload()}>
-            Restart
-          </button>
-        </div>
-      )}
+      {Boolean(state.gameover) && <Restart score={state.score} />}
     </div>
   );
 }
