@@ -18,8 +18,8 @@ import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 import { Ground } from './cmp/Ground';
 
-import backgroundDay from './asset/sprites/background-day.png';
-import backgroundNight from './asset/sprites/background-night.png';
+import backgroundDayImg from './asset/sprites/background-day.png';
+import backgroundNightImg from './asset/sprites/background-night.png';
 import { Restart } from './cmp/Restart';
 
 const reducer = (state, action) => {
@@ -49,14 +49,13 @@ const initialState = {
   score: 0,
   line: { w: LINE_WIDTH },
   bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
-  pipe: { w: PIPE_WIDTH, v: 2, initX: SCREEN_WIDTH },
+  pipe: { w: PIPE_WIDTH, v: SCREEN_WIDTH < 500 ? 2 : 2.4, initX: SCREEN_WIDTH },
   ground: { h: GROUND_HEIGHT },
 };
 
 function Screen() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const backgroundByTime = useRef(getStateOfTime() ? backgroundDay : backgroundNight);
-
+  const backgroundByTime = useRef(getStateOfTime() ? backgroundDayImg : backgroundNightImg);
   return (
     <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundByTime.current})` }}>
       {state.score > 0 && !state.gameover && (
@@ -76,7 +75,7 @@ function Screen() {
 
       <Pipe
         {...state}
-        initX={state.pipe.initX * 1.5}
+        initX={state.pipe.initX * 1.5 + state.pipe.w / 2}
         height={randomHeightPipe(SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT)}
         dispatch={dispatch}
       />

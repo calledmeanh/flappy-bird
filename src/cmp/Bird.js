@@ -3,17 +3,17 @@ import { GRAVITY, REDUCER_TYPE, SCREEN_HEIGHT, STYLES } from '../constant';
 import { useRaf } from '../hook';
 import { listener } from '../util';
 
-import birdDown from '../asset/sprites/yellowbird-downflap.png';
-import birdMid from '../asset/sprites/yellowbird-midflap.png';
-import birdUp from '../asset/sprites/yellowbird-upflap.png';
+import birdDownImg from '../asset/sprites/yellowbird-downflap.png';
+import birdMidImg from '../asset/sprites/yellowbird-midflap.png';
+import birdUpImg from '../asset/sprites/yellowbird-upflap.png';
 
 import wingSrc from '../asset/audio/audio_wing.ogg';
 
-const birdSprites = [birdDown, birdMid, birdUp];
+const birdSprites = [birdDownImg, birdMidImg, birdUpImg];
 let birdIdx = 0;
 
 export function Bird(props) {
-  const [src, setSrc] = useState(birdDown);
+  const [src, setSrc] = useState(birdDownImg);
   const velocity = useRef(props.bird.v);
   const tolerace = useRef(2);
   const rotate = useRef(0);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { STYLES } from '../constant';
 
-import restartBtn from '../asset/sprites/restart.png';
+import restartBtnImg from '../asset/sprites/restart.png';
 import gameoverImg from '../asset/sprites/gameover.png';
 import { transformScore } from '../util';
 
@@ -16,7 +16,7 @@ export function Restart(props) {
           return <img key={i} style={{ ...STYLES.RESTART_SCORE_IMG }} src={s} alt={i} />;
         })}
       </div>
-      <img style={{ ...STYLES.RESTART_BTN }} src={restartBtn} onClick={reset} alt="restart-btn" />
+      <img style={{ ...STYLES.RESTART_BTN }} src={restartBtnImg} onClick={reset} alt="restart-btn" />
     </div>
   );
 }

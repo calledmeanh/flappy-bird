@@ -4,8 +4,8 @@ import { randomHeightPipe, checkRectCollision } from '../util';
 import { useRaf } from '../hook';
 import { Line } from './Line';
 
-import pipeDown from '../asset/sprites/pipe-green-down.png';
-import pipeUp from '../asset/sprites/pipe-green-up.png';
+import pipeDownImg from '../asset/sprites/pipe-green-down.png';
+import pipeUpImg from '../asset/sprites/pipe-green-up.png';
 
 import hitSrc from '../asset/audio/audio_hit.ogg';
 
@@ -30,10 +30,10 @@ export function Pipe(props) {
   useRaf(() => {
     if (props.running && !props.gameover) {
       const { upHeight, downHeight } = height.current;
-      const pipeUp = { x: x.current, y: 0, w: props.pipe.w, h: upHeight };
-      const pipeDown = { x: x.current, y: SCREEN_HEIGHT - props.ground.h - downHeight, w: props.pipe.w, h: downHeight };
+      const pipeUpImg = { x: x.current, y: 0, w: props.pipe.w, h: upHeight };
+      const pipeDownImg = { x: x.current, y: SCREEN_HEIGHT - props.ground.h - downHeight, w: props.pipe.w, h: downHeight };
 
-      if (checkRectCollision(props.bird, pipeUp) || checkRectCollision(props.bird, pipeDown)) {
+      if (checkRectCollision(props.bird, pipeUpImg) || checkRectCollision(props.bird, pipeDownImg)) {
         if (hitRef.current) {
           hitRef.current.currentTime = 0;
           hitRef.current.play();
@@ -49,7 +49,7 @@ export function Pipe(props) {
       <div
         style={{
           ...STYLES.PIPE_UP,
-          backgroundImage: `url(${pipeUp})`,
+          backgroundImage: `url(${pipeUpImg})`,
           transform: `translateX(${x.current}px)`,
           height: height.current.upHeight,
         }}
@@ -70,7 +70,7 @@ export function Pipe(props) {
       <div
         style={{
           ...STYLES.PIPE_DOWN,
-          backgroundImage: `url(${pipeDown})`,
+          backgroundImage: `url(${pipeDownImg})`,
           transform: `translateX(${x.current}px)`,
           height: height.current.downHeight,
         }}
