@@ -92,6 +92,13 @@ export const STYLES = {
     position: 'absolute',
     bottom: 0,
   },
+  INSTRUCTION: {
+    position: 'absolute',
+    maxWidth: '100%',
+    height: 'auto',
+    transform: `translate(${SCREEN_WIDTH_HALF - 184 / 2}px, ${50}px)`,
+    zIndex: 1,
+  },
   CROSSLINE: {
     width: '100%',
     height: CROSSLINE_HEIGHT,
@@ -107,12 +114,14 @@ export const STYLES = {
   },
   SCORE: {
     position: 'absolute',
-    transform: `translate(${BIRD_CENTER_X}px, ${100}px)`,
+    top: '7%',
+    left: '50%',
+    transform: 'translate(-50%, -7%)',
     zIndex: 1,
   },
   SCORE_IMG: {
-    width: 36,
-    height: 56,
+    width: 30,
+    height: 50,
     objectFit: 'contain',
   },
   LINE: {

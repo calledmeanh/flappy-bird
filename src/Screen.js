@@ -17,10 +17,11 @@ import { getStateOfTime, randomHeightPipe, transformScore } from './util';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 import { Ground } from './cmp/Ground';
+import { Restart } from './cmp/Restart';
 
 import backgroundDayImg from './asset/sprites/background-day.png';
 import backgroundNightImg from './asset/sprites/background-night.png';
-import { Restart } from './cmp/Restart';
+import instructionImg from './asset/sprites/instruction.png';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -58,12 +59,15 @@ function Screen() {
   const backgroundByTime = useRef(getStateOfTime() ? backgroundDayImg : backgroundNightImg);
   return (
     <div style={{ ...STYLES.SCREEN, backgroundImage: `url(${backgroundByTime.current})` }}>
-      {state.score > 0 && !state.gameover && (
+      {state.running && !state.gameover && (
         <div style={{ ...STYLES.SCORE }}>
           {transformScore(state.score).map((s, i) => {
             return <img key={i} style={{ ...STYLES.SCORE_IMG }} src={s} alt={i} />;
           })}
         </div>
+      )}
+      {!state.running && !state.gameover && (
+        <img style={{ ...STYLES.INSTRUCTION }} src={instructionImg} alt="instruction" />
       )}
       <Bird {...state} dispatch={dispatch} />
       <Pipe
