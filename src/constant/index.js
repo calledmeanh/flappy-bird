@@ -96,7 +96,9 @@ export const STYLES = {
     position: 'absolute',
     maxWidth: '100%',
     height: 'auto',
-    transform: `translate(${SCREEN_WIDTH_HALF - 184 / 2}px, ${50}px)`,
+    top: '2%',
+    left: '50%',
+    transform: 'translate(-50%, -2%)',
     zIndex: 1,
   },
   CROSSLINE: {
