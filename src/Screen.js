@@ -26,19 +26,24 @@ import instructionImg from './asset/sprites/instruction.png';
 const reducer = (state, action) => {
   switch (action.type) {
     case REDUCER_TYPE.BIRD_DOWN:
-      return { ...state, bird: { ...state.bird, y: state.bird.y + action.payload } };
+      return { ...state, bird: { ...state.bird, y: action.payload } };
     case REDUCER_TYPE.BIRD_STOP:
-      return { ...state, bird: { ...state.bird, y: action.payload - state.bird.h }, gameover: true, running: false };
+      return {
+        ...state,
+        bird: { ...state.bird, y: action.payload.y },
+        gameover: action.payload.gameover,
+        running: action.payload.running,
+      };
     case REDUCER_TYPE.BIRD_JUMP:
-      return { ...state, bird: { ...state.bird, y: state.bird.y - state.bird.h * 1.5 } };
-    case REDUCER_TYPE.SCORE:
-      return { ...state, score: state.score + 1 };
-    case REDUCER_TYPE.RUN:
-      return { ...state, running: true };
+      return { ...state, bird: { ...state.bird, y: action.payload } };
+    case REDUCER_TYPE.GET_SCORE:
+      return { ...state, score: action.payload };
+    case REDUCER_TYPE.RUNNING:
+      return { ...state, running: action.payload };
     case REDUCER_TYPE.PAUSE:
-      return { ...state, running: false };
+      return { ...state, running: action.payload };
     case REDUCER_TYPE.GAMEOVER:
-      return { ...state, gameover: true, running: false };
+      return { ...state, gameover: action.payload.gameover, running: action.payload.running };
     default:
       return state;
   }

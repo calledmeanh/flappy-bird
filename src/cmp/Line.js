@@ -17,8 +17,8 @@ export function Line(props) {
         if (crossLine.current && pointRef.current) {
           pointRef.current.currentTime = 0;
           pointRef.current.play();
-
-          props.dispatch({ type: REDUCER_TYPE.SCORE });
+          const payload = props.score + 1;
+          props.dispatch({ type: REDUCER_TYPE.GET_SCORE, payload });
           crossLine.current = false;
         }
       }

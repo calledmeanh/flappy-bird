@@ -31,15 +31,20 @@ export function Pipe(props) {
     if (props.running && !props.gameover) {
       const { upHeight, downHeight } = height.current;
       const pipeUpImg = { x: x.current, y: 0, w: props.pipe.w, h: upHeight };
-      const pipeDownImg = { x: x.current, y: SCREEN_HEIGHT - props.ground.h - downHeight, w: props.pipe.w, h: downHeight };
+      const pipeDownImg = {
+        x: x.current,
+        y: SCREEN_HEIGHT - props.ground.h - downHeight,
+        w: props.pipe.w,
+        h: downHeight,
+      };
 
       if (checkRectCollision(props.bird, pipeUpImg) || checkRectCollision(props.bird, pipeDownImg)) {
         if (hitRef.current) {
           hitRef.current.currentTime = 0;
           hitRef.current.play();
         }
-
-        props.dispatch({ type: REDUCER_TYPE.GAMEOVER });
+        const payload = { gameover: true, running: false };
+        props.dispatch({ type: REDUCER_TYPE.GAMEOVER, payload });
       }
     }
   });

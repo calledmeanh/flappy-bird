@@ -37,15 +37,19 @@ export function Bird(props) {
         velocity.current = velocity.current + GRAVITY * tolerace.current;
         rotate.current = Math.floor(velocity.current * 10);
         if (rotate.current >= 90) rotate.current = 90;
-        props.dispatch({ type: REDUCER_TYPE.BIRD_DOWN, payload: velocity.current });
-      } else props.dispatch({ type: REDUCER_TYPE.BIRD_STOP, payload: SCREEN_HEIGHT - props.ground.h });
+        const newPos = props.bird.y + velocity.current;
+        props.dispatch({ type: REDUCER_TYPE.BIRD_DOWN, payload: newPos });
+      } else {
+        const birdStopState = { y: SCREEN_HEIGHT - props.ground.h - props.bird.h, gameover: true, running: false };
+        props.dispatch({ type: REDUCER_TYPE.BIRD_STOP, payload: birdStopState });
+      }
     }
   });
 
   // make bird jump when press space & touch
   const jumping = useCallback(() => {
     if (!props.gameover) {
-      if (!props.running) props.dispatch({ type: REDUCER_TYPE.RUN });
+      if (!props.running) props.dispatch({ type: REDUCER_TYPE.RUNNING, payload: true });
       else {
         if (wingRef.current) {
           wingRef.current.currentTime = 0;
@@ -54,7 +58,8 @@ export function Bird(props) {
 
         velocity.current = props.bird.v;
         rotate.current = -90;
-        props.dispatch({ type: REDUCER_TYPE.BIRD_JUMP });
+        const payload = props.bird.y - props.bird.h * 1.5;
+        props.dispatch({ type: REDUCER_TYPE.BIRD_JUMP, payload });
       }
     }
   }, [props]);
@@ -67,7 +72,7 @@ export function Bird(props) {
           jumping();
           break;
         case 80: // p
-          if (!props.gameover) props.dispatch({ type: REDUCER_TYPE.PAUSE });
+          if (!props.gameover) props.dispatch({ type: REDUCER_TYPE.PAUSE, payload: false });
           break;
         default:
           break;
