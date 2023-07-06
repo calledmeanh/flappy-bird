@@ -55,7 +55,7 @@ export function Bird(props) {
           wingRef.current.currentTime = 0;
           wingRef.current.play();
         }
-
+        
         velocity.current = props.bird.v;
         rotate.current = -90;
         const payload = props.bird.y - props.bird.h * 1.5;
@@ -87,6 +87,14 @@ export function Bird(props) {
       jumping();
     });
     return () => onRemoveTouch();
+  }, [jumping]);
+
+  // click
+  useEffect(() => {
+    const onRemoveClick = listener('mousedown', (e) => {
+      jumping();
+    });
+    return () => onRemoveClick();
   }, [jumping]);
 
   return (
