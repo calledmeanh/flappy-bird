@@ -50,7 +50,7 @@ export const REDUCER_TYPE = {
   BIRD_STOP: 'bird-stop',
   BIRD_JUMP: 'bird-jump',
   SCORE: 'score',
-  RUN: 'run',
+  RUNNING: 'run',
   PAUSE: 'pause',
   GAMEOVER: 'gameover',
 };
