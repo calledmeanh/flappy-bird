@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { GRAVITY, REDUCER_TYPE, SCREEN_HEIGHT, STYLES } from '../constant';
+import { GRAVITY, SCREEN_HEIGHT, STYLES } from '../constant';
+import { REDUCER_TYPE } from '../reducer';
 import { useRaf } from '../hook';
 import { listener } from '../util';
 
@@ -55,7 +56,7 @@ export function Bird(props) {
           wingRef.current.currentTime = 0;
           wingRef.current.play();
         }
-        
+
         velocity.current = props.bird.v;
         rotate.current = -90;
         const payload = props.bird.y - props.bird.h * 1.5;

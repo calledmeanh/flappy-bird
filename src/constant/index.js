@@ -45,16 +45,6 @@ export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
 export const LINE_WIDTH = getSizeByPercent(SCREEN_WIDTH, LINE_PERCENT);
 export const LINE_WIDTH_HALF = LINE_WIDTH / 2;
 
-export const REDUCER_TYPE = {
-  BIRD_DOWN: 'bird-down',
-  BIRD_STOP: 'bird-stop',
-  BIRD_JUMP: 'bird-jump',
-  SCORE: 'score',
-  RUNNING: 'run',
-  PAUSE: 'pause',
-  GAMEOVER: 'gameover',
-};
-
 export const STYLES = {
   SCREEN: {
     width: SCREEN_WIDTH,

@@ -1,5 +1,6 @@
 import React, { Fragment, useRef } from 'react';
-import { STYLES, SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT, REDUCER_TYPE, SCREEN_WIDTH } from '../constant';
+import { STYLES, SCREEN_HEIGHT, MAX_PIPE_HEIGHT_PERCENT, SCREEN_WIDTH } from '../constant';
+import { REDUCER_TYPE } from '../reducer';
 import { randomHeightPipe, checkRectCollision } from '../util';
 import { useRaf } from '../hook';
 import { Line } from './Line';

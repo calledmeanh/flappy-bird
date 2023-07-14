@@ -1,19 +1,7 @@
 import React, { useReducer, useRef } from 'react';
-import {
-  BIRD_CENTER_Y,
-  BIRD_HEIGHT,
-  STYLES,
-  BIRD_CENTER_X,
-  BIRD_WIDTH,
-  REDUCER_TYPE,
-  MAX_PIPE_HEIGHT_PERCENT,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-  PIPE_WIDTH,
-  LINE_WIDTH,
-  GROUND_HEIGHT,
-} from './constant';
+import { STYLES, MAX_PIPE_HEIGHT_PERCENT, SCREEN_HEIGHT } from './constant';
 import { getStateOfTime, randomHeightPipe, transformScore } from './util';
+import { initialState, reducer } from './reducer';
 import { Bird } from './cmp/Bird';
 import { Pipe } from './cmp/Pipe';
 import { Ground } from './cmp/Ground';
@@ -22,42 +10,6 @@ import { Restart } from './cmp/Restart';
 import backgroundDayImg from './asset/sprites/background-day.png';
 import backgroundNightImg from './asset/sprites/background-night.png';
 import instructionImg from './asset/sprites/instruction.png';
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case REDUCER_TYPE.BIRD_DOWN:
-      return { ...state, bird: { ...state.bird, y: action.payload } };
-    case REDUCER_TYPE.BIRD_STOP:
-      return {
-        ...state,
-        bird: { ...state.bird, y: action.payload.y },
-        gameover: action.payload.gameover,
-        running: action.payload.running,
-      };
-    case REDUCER_TYPE.BIRD_JUMP:
-      return { ...state, bird: { ...state.bird, y: action.payload } };
-    case REDUCER_TYPE.GET_SCORE:
-      return { ...state, score: action.payload };
-    case REDUCER_TYPE.RUNNING:
-      return { ...state, running: action.payload };
-    case REDUCER_TYPE.PAUSE:
-      return { ...state, running: action.payload };
-    case REDUCER_TYPE.GAMEOVER:
-      return { ...state, gameover: action.payload.gameover, running: action.payload.running };
-    default:
-      return state;
-  }
-};
-
-const initialState = {
-  running: false,
-  gameover: false,
-  score: 0,
-  line: { w: LINE_WIDTH },
-  bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
-  pipe: { w: PIPE_WIDTH, v: SCREEN_WIDTH < 500 ? 2 : 2.4, initX: SCREEN_WIDTH },
-  ground: { h: GROUND_HEIGHT },
-};
 
 function Screen() {
   const [state, dispatch] = useReducer(reducer, initialState);
