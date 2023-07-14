@@ -1,6 +1,6 @@
 import React from 'react';
 import { STYLES } from '../constant';
-import { transformScore } from '../util';
+import { Score } from './Score';
 
 import restartBtnImg from '../asset/sprites/restart.png';
 import gameoverImg from '../asset/sprites/gameover.png';
@@ -11,11 +11,7 @@ export function Restart({ score }) {
   return (
     <div style={{ ...STYLES.RESTART }}>
       <img style={{ ...STYLES.RESTART_GAMEOVER }} src={gameoverImg} alt="gameover" />
-      <div style={{ ...STYLES.RESTART_SCORE }}>
-        {transformScore(score).map((s, i) => {
-          return <img key={i} style={{ ...STYLES.RESTART_SCORE_IMG }} src={s} alt={i} />;
-        })}
-      </div>
+      <Score score={score} display={"RESTART"} />
       <img style={{ ...STYLES.RESTART_BTN }} src={restartBtnImg} onClick={reset} alt="restart-btn" />
     </div>
   );

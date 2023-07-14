@@ -104,12 +104,15 @@ export const STYLES = {
     height: LANE_HEIGHT,
     backgroundColor: '#ddd894',
   },
-  SCORE: {
+  SCORE_IN_SCREEN: {
     position: 'absolute',
     top: '7%',
     left: '50%',
     transform: 'translate(-50%, -7%)',
     zIndex: 1,
+  },
+  SCORE_IN_RESTART: {
+    margin: '15px 0',
   },
   SCORE_IMG: {
     width: 30,
@@ -131,14 +134,14 @@ export const STYLES = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  RESTART_SCORE: {
+  /* RESTART_SCORE: {
     margin: '20px 0',
   },
   RESTART_SCORE_IMG: {
     width: 26,
     height: 46,
     objectFit: 'contain',
-  },
+  }, */
   RESTART_GAMEOVER: {
     maxWidth: '100%',
     height: 'auto',
