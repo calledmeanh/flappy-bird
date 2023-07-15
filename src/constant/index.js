@@ -40,10 +40,8 @@ export const { upHeight: PIPE_UP_HEIGHT, downHeight: PIPE_DOWN_HEIGHT } = random
   SCREEN_HEIGHT,
   MAX_PIPE_HEIGHT_PERCENT
 );
-export const PIPE_CENTER_X = SCREEN_WIDTH_HALF - PIPE_WIDTH_HALF;
 
 export const LINE_WIDTH = getSizeByPercent(SCREEN_WIDTH, LINE_PERCENT);
-export const LINE_WIDTH_HALF = LINE_WIDTH / 2;
 
 export const STYLES = {
   SCREEN: {
@@ -134,14 +132,6 @@ export const STYLES = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  /* RESTART_SCORE: {
-    margin: '20px 0',
-  },
-  RESTART_SCORE_IMG: {
-    width: 26,
-    height: 46,
-    objectFit: 'contain',
-  }, */
   RESTART_GAMEOVER: {
     maxWidth: '100%',
     height: 'auto',

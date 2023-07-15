@@ -12,11 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.crossline {
-  animation: animatedBackground 0.4s linear infinite;
+/* animating bird */
+.bird {
+  background-image: url('./asset/sprites/bird-sprites.png');
+  background-size: auto 100%;
+  background-position-y: center;
+  animation: flying 0.15s steps(3) infinite;
 }
 
-@keyframes animatedBackground {
+@keyframes flying {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 134px;
+  }
+}
+
+/* animating crossline in ground comp */
+.crossline {
+  animation: animatedCrossline 0.4s linear infinite;
+}
+
+@keyframes animatedCrossline {
   0% {
     background-image: repeating-linear-gradient(-45deg, #a3de5a 0 5px, #69a817 5px 10px);
   }

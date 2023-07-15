@@ -1,35 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { GRAVITY, SCREEN_HEIGHT, STYLES } from '../constant';
 import { REDUCER_TYPE } from '../reducer';
 import { useRaf } from '../hook';
 import { listener } from '../util';
 
-import birdDownImg from '../asset/sprites/yellowbird-downflap.png';
-import birdMidImg from '../asset/sprites/yellowbird-midflap.png';
-import birdUpImg from '../asset/sprites/yellowbird-upflap.png';
-
 import wingSrc from '../asset/audio/audio_wing.ogg';
 
-const birdSprites = [birdDownImg, birdMidImg, birdUpImg];
-let birdIdx = 0;
-
 export function Bird({ bird, gameover, running, ground, dispatch }) {
-  const [src, setSrc] = useState(birdDownImg);
-
   const velocity = useRef(bird.v);
   const tolerace = useRef(2);
   const rotate = useRef(0);
   const wingRef = useRef();
-
-  // sprite animation
-  useRaf(() => {
-    if (!gameover) {
-      if (birdIdx < birdSprites.length - 1) {
-        setSrc(birdSprites[birdIdx]);
-        birdIdx++;
-      } else birdIdx = 0;
-    }
-  });
 
   // make bird fallin down
   useRaf(() => {
@@ -101,14 +82,13 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
 
   return (
     <>
-      <img
-        src={src}
-        alt="bird"
+      <div
+        className="bird"
         style={{
           ...STYLES.BIRD,
           transform: `translate(${bird.x}px, ${bird.y}px) rotate(${rotate.current}deg)`,
         }}
-      />
+      ></div>
       <audio ref={wingRef} src={wingSrc}></audio>
     </>
   );
