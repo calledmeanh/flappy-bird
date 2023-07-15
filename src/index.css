@@ -17,6 +17,7 @@ code {
   background-image: url('./asset/sprites/bird-sprites.png');
   background-size: auto 100%;
   background-position-y: center;
+  background-repeat: no-repeat;
   animation: flying 0.15s steps(3) infinite;
 }
 
@@ -25,7 +26,7 @@ code {
     background-position-x: 0;
   }
   100% {
-    background-position-x: 134px;
+    background-position-x: 141%;
   }
 }
 

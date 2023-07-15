@@ -2,9 +2,11 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { GRAVITY, SCREEN_HEIGHT, STYLES } from '../constant';
 import { REDUCER_TYPE } from '../reducer';
 import { useRaf } from '../hook';
-import { listener } from '../util';
+import { listener, mobileCheck } from '../util';
 
 import wingSrc from '../asset/audio/audio_wing.ogg';
+
+const isMobile = mobileCheck();
 
 export function Bird({ bird, gameover, running, ground, dispatch }) {
   const velocity = useRef(bird.v);
@@ -64,20 +66,19 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
     return () => onRemoveKeydown();
   }, [gameover, jumping, dispatch]);
 
-  // touch
+  // touch & click
   useEffect(() => {
-    const onRemoveTouch = listener('touchstart', (e) => {
-      jumping();
-    });
-    return () => onRemoveTouch();
-  }, [jumping]);
-
-  // click
-  useEffect(() => {
-    const onRemoveClick = listener('mousedown', (e) => {
-      jumping();
-    });
-    return () => onRemoveClick();
+    let onRemoveJump;
+    if (isMobile) {
+      onRemoveJump = listener('touchstart', (e) => {
+        jumping();
+      });
+    } else {
+      onRemoveJump = listener('mousedown', (e) => {
+        jumping();
+      });
+    }
+    return () => onRemoveJump();
   }, [jumping]);
 
   return (
