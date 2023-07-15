@@ -6,9 +6,8 @@ import { listener, mobileCheck } from '../util';
 
 import wingSrc from '../asset/audio/audio_wing.ogg';
 
-const isMobile = mobileCheck();
-
 export function Bird({ bird, gameover, running, ground, dispatch }) {
+  const isMobile = useRef(mobileCheck());
   const velocity = useRef(bird.v);
   const tolerace = useRef(2);
   const rotate = useRef(0);
@@ -20,7 +19,7 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
       if (bird.y < SCREEN_HEIGHT - ground.h - bird.h) {
         if (gameover) tolerace.current = 6;
         velocity.current = velocity.current + GRAVITY * tolerace.current;
-        rotate.current = Math.floor(velocity.current * 10);
+        rotate.current = Math.floor(velocity.current * 7);
         if (rotate.current >= 90) rotate.current = 90;
         const newPos = bird.y + velocity.current;
         dispatch({ type: REDUCER_TYPE.BIRD_DOWN, payload: newPos });
@@ -69,7 +68,7 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
   // touch & click
   useEffect(() => {
     let onRemoveJump;
-    if (isMobile) {
+    if (isMobile.current) {
       onRemoveJump = listener('touchstart', (e) => {
         jumping();
       });
