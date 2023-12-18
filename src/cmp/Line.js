@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import { STYLES } from '../constant';
-import { useRaf } from '../hook';
-import { REDUCER_TYPE } from '../reducer';
-import { checkRectCollision } from '../util';
+import React, { useRef } from "react";
+import { STYLES } from "../constant";
+import { useRaf } from "../hook";
+import { REDUCER_TYPE } from "../reducer";
+import { checkRectCollision } from "../util";
 
-import pointSrc from '../asset/audio/audio_point.ogg';
+import pointSrc from "../asset/audio/audio_point.ogg";
 
 export function Line({ running, gameover, bird, line, score, dispatch }) {
   const crossLine = useRef();

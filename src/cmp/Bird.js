@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { GRAVITY, SCREEN_HEIGHT, STYLES } from '../constant';
-import { REDUCER_TYPE } from '../reducer';
-import { useRaf } from '../hook';
-import { listener, mobileCheck } from '../util';
+import React, { useCallback, useEffect, useRef } from "react";
+import { GRAVITY, SCREEN_HEIGHT, STYLES } from "../constant";
+import { REDUCER_TYPE } from "../reducer";
+import { useRaf } from "../hook";
+import { listener, mobileCheck } from "../util";
 
-import wingSrc from '../asset/audio/audio_wing.ogg';
+import wingSrc from "../asset/audio/audio_wing.ogg";
 
 export function Bird({ bird, gameover, running, ground, dispatch }) {
   const isMobile = useRef(mobileCheck());
@@ -50,7 +50,7 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
 
   // press space
   useEffect(() => {
-    const onRemoveKeydown = listener('keydown', (e) => {
+    const onRemoveKeydown = listener("keydown", (e) => {
       switch (e.keyCode) {
         case 32: // space
           jumping();
@@ -69,11 +69,11 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
   useEffect(() => {
     let onRemoveJump;
     if (isMobile.current) {
-      onRemoveJump = listener('touchstart', (e) => {
+      onRemoveJump = listener("touchstart", (e) => {
         jumping();
       });
     } else {
-      onRemoveJump = listener('mousedown', (e) => {
+      onRemoveJump = listener("mousedown", (e) => {
         jumping();
       });
     }

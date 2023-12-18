@@ -1,9 +1,9 @@
-import React from 'react';
-import { STYLES } from '../constant';
-import { Score } from './Score';
+import React from "react";
+import { STYLES } from "../constant";
+import { Score } from "./Score";
 
-import restartBtnImg from '../asset/sprites/restart.png';
-import gameoverImg from '../asset/sprites/gameover.png';
+import restartBtnImg from "../asset/sprites/restart.png";
+import gameoverImg from "../asset/sprites/gameover.png";
 
 export function Restart({ score }) {
   const reset = (e) => window.location.reload();

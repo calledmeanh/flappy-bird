@@ -1,22 +1,13 @@
-import {
-  BIRD_CENTER_Y,
-  BIRD_HEIGHT,
-  BIRD_CENTER_X,
-  BIRD_WIDTH,
-  SCREEN_WIDTH,
-  PIPE_WIDTH,
-  LINE_WIDTH,
-  GROUND_HEIGHT,
-} from '../constant';
+import { BIRD_CENTER_Y, BIRD_HEIGHT, BIRD_CENTER_X, BIRD_WIDTH, SCREEN_WIDTH, PIPE_WIDTH, LINE_WIDTH, GROUND_HEIGHT } from "../constant";
 
 export const REDUCER_TYPE = {
-  BIRD_DOWN: 'bird-down',
-  BIRD_STOP: 'bird-stop',
-  BIRD_JUMP: 'bird-jump',
-  SCORE: 'score',
-  RUNNING: 'running',
-  PAUSE: 'pause',
-  GAMEOVER: 'gameover',
+  BIRD_DOWN: "bird-down",
+  BIRD_STOP: "bird-stop",
+  BIRD_JUMP: "bird-jump",
+  SCORE: "score",
+  RUNNING: "running",
+  PAUSE: "pause",
+  GAMEOVER: "gameover",
 };
 
 export const initialState = {
@@ -25,7 +16,7 @@ export const initialState = {
   score: 0,
   line: { w: LINE_WIDTH },
   bird: { x: BIRD_CENTER_X, y: BIRD_CENTER_Y, w: BIRD_WIDTH, h: BIRD_HEIGHT, v: 0.4 },
-  pipe: { w: PIPE_WIDTH, v: SCREEN_WIDTH < 500 ? 2 : 2.4, initX: SCREEN_WIDTH },
+  pipe: { w: PIPE_WIDTH, v: SCREEN_WIDTH < 500 ? 2 : 3.6, initX: SCREEN_WIDTH },
   ground: { h: GROUND_HEIGHT },
 };
 
