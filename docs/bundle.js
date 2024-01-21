@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 552:
+/***/ 725:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 
@@ -105,7 +105,7 @@ var getImageByNumber = function getImageByNumber(num) {
     case 9:
       return _9_namespaceObject;
     default:
-      return '';
+      return "";
   }
 };
 var transformScore = function transformScore(score) {
@@ -114,7 +114,7 @@ var transformScore = function transformScore(score) {
     return [scoreImg];
   }
   var scoreStr = score.toString();
-  var scoreArr = scoreStr.split('');
+  var scoreArr = scoreStr.split("");
   return scoreArr.reduce(function (init, s) {
     var scoreInt = parseInt(s);
     var scoreImg = getImageByNumber(scoreInt);
@@ -168,101 +168,101 @@ var STYLES = {
   SCREEN: {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    backgroundRepeat: 'repeat-x',
-    backgroundSize: '100% 100%',
-    margin: '0 auto',
-    position: 'relative',
-    overflow: 'hidden'
+    backgroundRepeat: "repeat-x",
+    backgroundSize: "100% 100%",
+    margin: "0 auto",
+    position: "relative",
+    overflow: "hidden"
   },
   BIRD: {
     width: BIRD_WIDTH,
     height: BIRD_HEIGHT,
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1,
-    transition: 'transform 0.05s linear'
+    transition: "transform 0.05s linear"
   },
   PIPE_UP: {
     width: PIPE_WIDTH,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
-    position: 'absolute',
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% 100%",
+    position: "absolute",
     top: 0
   },
   PIPE_DOWN: {
     width: PIPE_WIDTH,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
-    position: 'absolute',
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% 100%",
+    position: "absolute",
     bottom: GROUND_HEIGHT
   },
   GROUND: {
-    width: '100%',
+    width: "100%",
     height: GROUND_HEIGHT,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0
   },
   INSTRUCTION: {
-    position: 'absolute',
-    maxWidth: '100%',
-    height: 'auto',
-    top: '2%',
-    left: '50%',
-    transform: 'translate(-50%, -2%)',
+    position: "absolute",
+    maxWidth: "100%",
+    height: "auto",
+    top: "2%",
+    left: "50%",
+    transform: "translate(-50%, -2%)",
     zIndex: 1
   },
   CROSSLINE: {
-    width: '100%',
+    width: "100%",
     height: CROSSLINE_HEIGHT,
-    backgroundImage: 'repeating-linear-gradient(-45deg, #a3de5a 0 5px, #69a817 5px 10px)',
-    borderTop: '2px solid #543444',
-    borderBottom: '2px solid #5e7e13',
-    boxSizing: 'border-box'
+    backgroundImage: "repeating-linear-gradient(-45deg, #a3de5a 0 5px, #69a817 5px 10px)",
+    borderTop: "2px solid #543444",
+    borderBottom: "2px solid #5e7e13",
+    boxSizing: "border-box"
   },
   LANE: {
-    width: '100%',
+    width: "100%",
     height: LANE_HEIGHT,
-    backgroundColor: '#ddd894'
+    backgroundColor: "#ddd894"
   },
   SCORE_IN_SCREEN: {
-    position: 'absolute',
-    top: '7%',
-    left: '50%',
-    transform: 'translate(-50%, -7%)',
+    position: "absolute",
+    top: "7%",
+    left: "50%",
+    transform: "translate(-50%, -7%)",
     zIndex: 1
   },
   SCORE_IN_RESTART: {
-    margin: '15px 0'
+    margin: "15px 0"
   },
   SCORE_IMG: {
     width: 30,
     height: 50,
-    objectFit: 'contain'
+    objectFit: "contain"
   },
   LINE: {
     width: LINE_WIDTH,
-    position: 'absolute'
+    position: "absolute"
   },
   RESTART: {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    position: 'absolute',
+    backgroundColor: "rgba(0,0,0,0.5)",
+    position: "absolute",
     zIndex: 2,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center"
   },
   RESTART_GAMEOVER: {
-    maxWidth: '100%',
-    height: 'auto',
-    objectFit: 'scale-down'
+    maxWidth: "100%",
+    height: "auto",
+    objectFit: "scale-down"
   },
   RESTART_BTN: {
     width: 128,
     height: 48,
-    cursor: 'pointer',
-    objectFit: 'scale-down'
+    cursor: "pointer",
+    objectFit: "scale-down"
   }
 };
 ;// CONCATENATED MODULE: ./src/reducer/index.js
@@ -274,13 +274,13 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 var REDUCER_TYPE = {
-  BIRD_DOWN: 'bird-down',
-  BIRD_STOP: 'bird-stop',
-  BIRD_JUMP: 'bird-jump',
-  SCORE: 'score',
-  RUNNING: 'running',
-  PAUSE: 'pause',
-  GAMEOVER: 'gameover'
+  BIRD_DOWN: "bird-down",
+  BIRD_STOP: "bird-stop",
+  BIRD_JUMP: "bird-jump",
+  SCORE: "score",
+  RUNNING: "running",
+  PAUSE: "pause",
+  GAMEOVER: "gameover"
 };
 var initialState = {
   running: false,
@@ -363,8 +363,8 @@ var useRaf = function useRaf(cb) {
     };
   }, [looping]);
 };
-;// CONCATENATED MODULE: ./src/asset/audio/audio_wing.ogg
-const audio_wing_namespaceObject = __webpack_require__.p + "assets/06f58df2486e5ade890c.ogg";
+;// CONCATENATED MODULE: ./src/asset/audio/audio_wing.mp3
+const audio_wing_namespaceObject = __webpack_require__.p + "assets/2e495ed20a7bdefc8099.mp3";
 ;// CONCATENATED MODULE: ./src/cmp/Bird.js
 function Bird_typeof(o) { "@babel/helpers - typeof"; return Bird_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, Bird_typeof(o); }
 function Bird_ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -441,7 +441,7 @@ function Bird(_ref) {
 
   // press space
   (0,react.useEffect)(function () {
-    var onRemoveKeydown = listener('keydown', function (e) {
+    var onRemoveKeydown = listener("keydown", function (e) {
       switch (e.keyCode) {
         case 32:
           // space
@@ -467,11 +467,11 @@ function Bird(_ref) {
   (0,react.useEffect)(function () {
     var onRemoveJump;
     if (isMobile.current) {
-      onRemoveJump = listener('touchstart', function (e) {
+      onRemoveJump = listener("touchstart", function (e) {
         jumping();
       });
     } else {
-      onRemoveJump = listener('mousedown', function (e) {
+      onRemoveJump = listener("mousedown", function (e) {
         jumping();
       });
     }
@@ -486,11 +486,12 @@ function Bird(_ref) {
     })
   }), /*#__PURE__*/react.createElement("audio", {
     ref: wingRef,
-    src: audio_wing_namespaceObject
+    src: audio_wing_namespaceObject,
+    autoPlay: "false"
   }));
 }
-;// CONCATENATED MODULE: ./src/asset/audio/audio_point.ogg
-const audio_point_namespaceObject = __webpack_require__.p + "assets/25b7658563967e60ca23.ogg";
+;// CONCATENATED MODULE: ./src/asset/audio/audio_point.mp3
+const audio_point_namespaceObject = __webpack_require__.p + "assets/77744fde7d7a87540678.mp3";
 ;// CONCATENATED MODULE: ./src/cmp/Line.js
 function Line_typeof(o) { "@babel/helpers - typeof"; return Line_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, Line_typeof(o); }
 function Line_ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -536,15 +537,16 @@ function Line(_ref) {
     })
   }), /*#__PURE__*/react.createElement("audio", {
     ref: pointRef,
-    src: audio_point_namespaceObject
+    src: audio_point_namespaceObject,
+    autoPlay: "false"
   }));
 }
 ;// CONCATENATED MODULE: ./src/asset/sprites/pipe-green-down.png
 const pipe_green_down_namespaceObject = __webpack_require__.p + "assets/4787c0e6b062de71aa5f.png";
 ;// CONCATENATED MODULE: ./src/asset/sprites/pipe-green-up.png
 const pipe_green_up_namespaceObject = __webpack_require__.p + "assets/910ba1e6223a539b1a93.png";
-;// CONCATENATED MODULE: ./src/asset/audio/audio_hit.ogg
-const audio_hit_namespaceObject = __webpack_require__.p + "assets/53be63225a77062f0e05.ogg";
+;// CONCATENATED MODULE: ./src/asset/audio/audio_hit.mp3
+const audio_hit_namespaceObject = __webpack_require__.p + "assets/02cc4eec6f650008db5e.mp3";
 ;// CONCATENATED MODULE: ./src/cmp/Pipe.js
 function Pipe_typeof(o) { "@babel/helpers - typeof"; return Pipe_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, Pipe_typeof(o); }
 function Pipe_ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -648,7 +650,8 @@ function Pipe(_ref) {
     })
   }), /*#__PURE__*/react.createElement("audio", {
     ref: hitRef,
-    src: audio_hit_namespaceObject
+    src: audio_hit_namespaceObject,
+    autoPlay: "false"
   }));
 }
 ;// CONCATENATED MODULE: ./src/cmp/Ground.js
@@ -666,7 +669,7 @@ function Ground(_ref) {
     style: Ground_objectSpread({}, STYLES.GROUND)
   }, /*#__PURE__*/react.createElement("div", {
     style: Ground_objectSpread({}, STYLES.CROSSLINE),
-    className: gameover ? '' : 'crossline'
+    className: gameover ? "" : "crossline"
   }), /*#__PURE__*/react.createElement("div", {
     style: Ground_objectSpread({}, STYLES.LANE)
   }));
@@ -684,7 +687,7 @@ function Score_toPrimitive(input, hint) { if (Score_typeof(input) !== "object" |
 function Score(_ref) {
   var score = _ref.score,
     display = _ref.display;
-  var styleByDisplay = display === 'SCREEN' ? STYLES.SCORE_IN_SCREEN : STYLES.SCORE_IN_RESTART;
+  var styleByDisplay = display === "SCREEN" ? STYLES.SCORE_IN_SCREEN : STYLES.SCORE_IN_RESTART;
   return /*#__PURE__*/react.createElement("div", {
     style: Score_objectSpread({}, styleByDisplay)
   }, transformScore(score).map(function (s, i) {
@@ -777,7 +780,7 @@ function Screen() {
     })
   }, state.running && !state.gameover && /*#__PURE__*/react.createElement(Score, {
     score: state.score,
-    display: 'SCREEN'
+    display: "SCREEN"
   }), !state.running && !state.gameover && /*#__PURE__*/react.createElement("img", {
     style: Screen_objectSpread({}, STYLES.INSTRUCTION),
     src: instruction_namespaceObject,
@@ -1103,7 +1106,7 @@ module.exports = function (urlString) {
 // extracted by mini-css-extract-plugin
 
     if(true) {
-      // 1702910959711
+      // 1705851176321
       var cssReload = __webpack_require__(783)(module.id, {"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1643,7 +1646,7 @@ if (true) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("bcbc4357ffcdab57e759")
+/******/ 		__webpack_require__.h = () => ("4387bd5014e6e35146dd")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -2738,7 +2741,7 @@ if (true) {
 /******/ 	// module cache are used so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	var __webpack_exports__ = __webpack_require__(552);
+/******/ 	var __webpack_exports__ = __webpack_require__(725);
 /******/ 	
 /******/ })()
 ;
