@@ -4,7 +4,7 @@ import { useRaf } from "../hook";
 import { REDUCER_TYPE } from "../reducer";
 import { checkRectCollision } from "../util";
 
-import pointSrc from "../asset/audio/audio_point.ogg";
+import pointSrc from "../asset/audio/audio_point.mp3";
 
 export function Line({ running, gameover, bird, line, score, dispatch }) {
   const crossLine = useRef();
@@ -34,7 +34,7 @@ export function Line({ running, gameover, bird, line, score, dispatch }) {
           height: line.h,
         }}
       ></div>
-      <audio ref={pointRef} src={pointSrc}></audio>
+      <audio ref={pointRef} src={pointSrc} autoPlay="false"></audio>
     </>
   );
 }

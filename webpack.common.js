@@ -16,7 +16,7 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, include: path.join(__dirname, "src"), use: ["babel-loader"] },
       { test: /\.css$/i, use: [MiniCssExtractPlugin.loader, "css-loader"] },
-      { test: /\.(png|gif|ogg)$/i, type: "asset/resource" },
+      { test: /\.(png|gif|mp3)$/i, type: "asset/resource" },
     ],
   },
   optimization: {

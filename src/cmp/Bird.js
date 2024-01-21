@@ -4,7 +4,7 @@ import { REDUCER_TYPE } from "../reducer";
 import { useRaf } from "../hook";
 import { listener, mobileCheck } from "../util";
 
-import wingSrc from "../asset/audio/audio_wing.ogg";
+import wingSrc from "../asset/audio/audio_wing.mp3";
 
 export function Bird({ bird, gameover, running, ground, dispatch }) {
   const isMobile = useRef(mobileCheck());
@@ -89,7 +89,7 @@ export function Bird({ bird, gameover, running, ground, dispatch }) {
           transform: `translate(${bird.x}px, ${bird.y}px) rotate(${rotate.current}deg)`,
         }}
       ></div>
-      <audio ref={wingRef} src={wingSrc}></audio>
+      <audio ref={wingRef} src={wingSrc} autoPlay="false"></audio>
     </>
   );
 }

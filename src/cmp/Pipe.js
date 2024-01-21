@@ -8,7 +8,7 @@ import { Line } from "./Line";
 import pipeDownImg from "../asset/sprites/pipe-green-down.png";
 import pipeUpImg from "../asset/sprites/pipe-green-up.png";
 
-import hitSrc from "../asset/audio/audio_hit.ogg";
+import hitSrc from "../asset/audio/audio_hit.mp3";
 
 export function Pipe({ initX, height, running, gameover, pipe, ground, bird, line, score, dispatch }) {
   const xRef = useRef(initX);
@@ -81,7 +81,7 @@ export function Pipe({ initX, height, running, gameover, pipe, ground, bird, lin
           height: heightRef.current.downHeight,
         }}
       ></div>
-      <audio ref={hitRef} src={hitSrc}></audio>
+      <audio ref={hitRef} src={hitSrc} autoPlay="false"></audio>
     </Fragment>
   );
 }
