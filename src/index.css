@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #000;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 code {
